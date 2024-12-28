@@ -1,0 +1,182 @@
+[
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16a" },
+    "title": "報連相の基本",
+    "description": "報連相の基本についての入門コースです。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16b" },
+    "title": "報連相とは何か",
+    "description": "報連相の意味と重要性について学びます。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 30,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16c" },
+    "title": "報連相の日本文化における役割",
+    "description": "報連相が日本文化にどのように根付いているかを学びます。",
+    "image": "https://to-ieba.com/wp-content/uploads/2023/10/japanese-culture.jpg",
+    "level": "中級",
+    "duration": 15,
+    "category": "日本文化"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16d" },
+    "title": "チーム内での報連相の実践",
+    "description": "チーム内で効果的に報連相を実践する方法を学びます。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16e" },
+    "title": "ビジネスにおける報連相の重要性",
+    "description": "ビジネス環境で報連相がどのように役立つかを学びます。",
+    "image": "https://sherpaworks.jp/sherpa/cms/wp-content/uploads/2022/10/EyeCatch46-3-1.png",
+    "level": "上級",
+    "duration": 15,
+    "category": "ビジネス"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b16f" },
+    "title": "報連相の基本的なスキル",
+    "description": "報連相の基本的なスキルを習得します。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b170" },
+    "title": "報連相の実践例",
+    "description": "報連相の実践例を通じて学びます。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b171" },
+    "title": "報連相の歴史",
+    "description": "報連相の歴史とその発展について学びます。",
+    "image": "https://to-ieba.com/wp-content/uploads/2023/10/japanese-culture.jpg",
+    "level": "中級",
+    "duration": 15,
+    "category": "日本文化"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b172" },
+    "title": "報連相の応用",
+    "description": "報連相の応用方法を学びます。",
+    "image": "https://sherpaworks.jp/sherpa/cms/wp-content/uploads/2022/10/EyeCatch46-3-1.png",
+    "level": "上級",
+    "duration": 12,
+    "category": "ビジネス"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b173" },
+    "title": "報連相の効果的なコミュニケーション",
+    "description": "報連相を使った効果的なコミュニケーション方法を学びます。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b174" },
+    "title": "報連相の実践トレーニング",
+    "description": "報連相の実践トレーニングを行います。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b175" },
+    "title": "報連相のビジネスケーススタディ",
+    "description": "ビジネスにおける報連相のケーススタディを学びます。",
+    "image": "https://sherpaworks.jp/sherpa/cms/wp-content/uploads/2022/10/EyeCatch46-3-1.png",
+    "level": "上級",
+    "duration": 15,
+    "category": "ビジネス"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b176" },
+    "title": "報連相の基本的な概念",
+    "description": "報連相の基本的な概念を理解します。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b177" },
+    "title": "報連相のチームビルディング",
+    "description": "報連相を使ったチームビルディングの方法を学びます。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b178" },
+    "title": "報連相のビジネス戦略",
+    "description": "ビジネスにおける報連相の戦略を学びます。",
+    "image": "https://sherpaworks.jp/sherpa/cms/wp-content/uploads/2022/10/EyeCatch46-3-1.png",
+    "level": "上級",
+    "duration": 15,
+    "category": "ビジネス"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b179" },
+    "title": "報連相の基本的な原則",
+    "description": "報連相の基本的な原則を学びます。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b17a" },
+    "title": "報連相のチームワーク",
+    "description": "報連相を使ったチームワークの向上方法を学びます。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b17b" },
+    "title": "報連相のビジネスコミュニケーション",
+    "description": "ビジネスにおける報連相のコミュニケーション方法を学びます。",
+    "image": "https://sherpaworks.jp/sherpa/cms/wp-content/uploads/2022/10/EyeCatch46-3-1.png",
+    "level": "上級",
+    "duration": 15,
+    "category": "ビジネス"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b17c" },
+    "title": "報連相の基本的な手法",
+    "description": "報連相の基本的な手法を学びます。",
+    "image": "https://livable-hub.com/wp-content/uploads/20220302_hourensou_2.jpg",
+    "level": "初級",
+    "duration": 10,
+    "category": "基本"
+  },
+  {
+    "_id": { "$oid": "67703ce382a229f497f2b17d" },
+    "title": "報連相のチーム内コミュニケーション",
+    "description": "チーム内での報連相のコミュニケーション方法を学びます。",
+    "image": "https://kaizen-base.com/wp/wp-content/uploads/2021/10/houreisou.gif",
+    "level": "中級",
+    "duration": 12,
+    "category": "チーム内"
+  }
+]
