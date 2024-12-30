@@ -5,29 +5,30 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    order: {
-        type: Number,
-        required: true,
-    },
     description: {
         type: String,
         required: true,
     },
-    testTitle: {
+
+    image: {
         type: String,
         required: true,
     },
-    content: {
+    level: {
+        type: String,
+        required: false,
+    },
+
+    duration: {
+        type: Number,
+        required: true,
+    },
+    category: {
         type: String,
         required: true,
     },
-    video: {
+    createdBy: {
         type: String,
-        required: true,
-    },
-    course: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Courses",
         required: true,
     },
     createdAt: {
@@ -36,4 +37,4 @@ const schema = new mongoose.Schema({
     },
 });
 
-export const Lecture = mongoose.model("Lecture", schema);
+export const Courses = mongoose.model("Courses", schema);
