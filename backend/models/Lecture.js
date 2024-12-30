@@ -30,6 +30,11 @@ const schema = new mongoose.Schema({
         ref: "Courses",
         required: true,
     },
+    chapter: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Chapter",
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
