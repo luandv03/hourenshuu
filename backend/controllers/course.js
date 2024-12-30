@@ -23,7 +23,10 @@ export const getSingleCourse = TryCatch(async (req, res) => {
 });
 
 export const fetchLectures = TryCatch(async (req, res) => {
+    console.log(req.params.id);
     const lectures = await Lecture.find({ course: req.params.id });
+
+    console.log(lectures);
 
     if (!req.user) {
         return res.json({ lectures });
