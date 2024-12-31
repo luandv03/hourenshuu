@@ -217,7 +217,9 @@ const CourseStudy = ({ user }) => {
                                                     }
                                                 >
                                                     <span className="font-bold">
-                                                        {`セクション${chapter?.order}:${chapter?.title}`}
+                                                        {`セクション${Math.abs(
+                                                            chapter?.order
+                                                        )}:${chapter?.title}`}
                                                     </span>
                                                     <span>
                                                         {openChapters[
@@ -265,7 +267,10 @@ const CourseStudy = ({ user }) => {
                                                                             </span>
                                                                             <FontAwesomeIcon
                                                                                 icon={
-                                                                                    faCheck
+                                                                                    chapter?.order >
+                                                                                    1
+                                                                                        ? faLock
+                                                                                        : faCheck
                                                                                 }
                                                                                 className="text-green-500 text-[20px]"
                                                                             />
@@ -289,7 +294,10 @@ const CourseStudy = ({ user }) => {
                                                                 </span>
                                                                 <FontAwesomeIcon
                                                                     icon={
-                                                                        faCheck
+                                                                        chapter?.order >
+                                                                        1
+                                                                            ? faLock
+                                                                            : faCheck
                                                                     }
                                                                     className="text-green-500 text-[20px]"
                                                                 />
