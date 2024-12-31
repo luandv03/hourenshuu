@@ -14,6 +14,7 @@ const sliderSettings = {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
+    arrow: false,
 };
 
 const Home = () => {
@@ -126,7 +127,7 @@ const Home = () => {
             <h2 className="text-left text-3xl font-semibold text-purple-700 mt-16 mb-8 pl-4">
                 注目のコース
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 px-4 justify-items-center">
                 {filteredCourses && filteredCourses.length > 0 ? (
                     filteredCourses.map((course) => (
                         <CourseCard

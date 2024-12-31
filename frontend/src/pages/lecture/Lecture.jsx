@@ -93,7 +93,7 @@ const Lecture = ({ user }) => {
                                             <div className="flex h-[150px] w-full justify-between items-center">
                                                 <div className="relative w-full h-full">
                                                     <h1 className="absolute top-0 left-0 text-left text-xl font-bold m-4 text-gray-900">
-                                                        Lecture{" "}
+                                                        レッスン{" "}
                                                         {lectures.findIndex(
                                                             (lec) =>
                                                                 lec._id ===
@@ -185,11 +185,21 @@ const Lecture = ({ user }) => {
                                             ></iframe>
 
                                             <div className="flex justify-start w-full">
-                                                <h3 className="text-left text-gray-600 w-full pl-4">
-                                                    Description:{" "}
+                                                <h3 className="text-left text-gray-600 w-full pl-4 font-semibold">
+                                                    ディスクリプション:{" "}
                                                     {lecture?.description}
                                                 </h3>
                                             </div>
+                                            <div className="flex justify-start w-full">
+                                                <h3 className="text-left text-gray-600 w-full pl-4 font-semibold">
+                                                    内容{" "}
+                                                </h3>
+                                            </div>
+                                            <div
+                                                dangerouslySetInnerHTML={{
+                                                    __html: lecture?.content,
+                                                }}
+                                            ></div>
                                         </>
                                     ) : (
                                         <h1 className="text-gray-500 text-center">

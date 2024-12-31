@@ -6,8 +6,6 @@ import courseImageJapanese from "./assets/japan-course.png";
 import courseImageCulture from "./assets/Culture.jpg";
 import courseImageVietnamese from "./assets/vietnamese.jpg";
 import axios from "axios";
-// import { CalendarIcon } from "@heroicons/react/outline";
-// import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCalendarAlt,
@@ -17,12 +15,40 @@ import {
 import { Button } from "@mui/material";
 import axiosInstance from "@/api/axiosInstance";
 
+const CHAPTERS = [
+    {
+        id: 1,
+        title: "入門",
+        order: 1,
+        description: "この章では、日本語の基本的な知識を学びます。",
+        lectures: ["日本語の概要", "ひらがなとカタカナ", "挨拶と基本フレーズ"],
+        test: "漢字",
+    },
+    {
+        id: 2,
+        title: "文法の基礎",
+        order: 2,
+        description: "この章では、日本語の文法について学びます。",
+        lectures: ["動詞と形容詞の使い方", "助詞の基本", "日常会話の例"],
+        test: "文法",
+    },
+    {
+        id: 3,
+        title: "応用",
+        order: 3,
+        description: "この章では、応用的な日本語スキルを習得します。",
+        lectures: ["ビジネス日本語の基本", "読解と作文の練習", "試験対策"],
+        test: "リスニング",
+    },
+];
+
 const CourseStudy = ({ user }) => {
     const [lectures, setLectures] = useState([]);
     const [completedLectures, setCompletedLectures] = useState([]);
     const [progress, setProgress] = useState(0);
     const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState("Tab1");
+    const [chapters, setChapters] = useState(CHAPTERS);
 
     const params = useParams();
     const { fetchCourse, course } = CourseData();
@@ -59,13 +85,26 @@ const CourseStudy = ({ user }) => {
         }
     }
 
+    const handleGetChapters = async () => {
+        try {
+            const res = await axiosInstance.get(
+                `/api/course/${params.id}/chapter/get`
+            );
+
+            if (res.data.status === 200 && res.data.chapters.length > 0) {
+                setChapters(res.data.chapters);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
+        handleGetChapters();
         fetchCourse(params.id);
         fetchLectures();
         fetchProgress();
     }, [params.id]);
-
-    // if (user && user.role !== "admin" && !user.subscription.includes(params.id)) return navigate("/");
 
     const categoryImages = {
         Japanese: courseImageJapanese,
@@ -82,47 +121,12 @@ const CourseStudy = ({ user }) => {
             [chapterId]: !prev[chapterId],
         }));
     };
+
     const exercises = [
         { id: 1, title: "練習問題 1" },
         { id: 2, title: "練習問題 2" },
         { id: 3, title: "練習問題 3" },
         { id: 4, title: "練習問題 4" },
-    ];
-
-    const chapters = [
-        {
-            id: 1,
-            title: "セクション1: 入門",
-            description: "この章では、日本語の基本的な知識を学びます。",
-            lectures: [
-                "第1課: 日本語の概要",
-                "第2課: ひらがなとカタカナ",
-                "第3課: 挨拶と基本フレーズ",
-            ],
-            test: "テスト１:漢字",
-        },
-        {
-            id: 2,
-            title: "セクション2: 文法の基礎",
-            description: "この章では、日本語の文法について学びます。",
-            lectures: [
-                "第1課: 動詞と形容詞の使い方",
-                "第2課: 助詞の基本",
-                "第3課: 日常会話の例",
-            ],
-            test: "テスト２:文法",
-        },
-        {
-            id: 3,
-            title: "セクション3: 応用",
-            description: "この章では、応用的な日本語スキルを習得します。",
-            lectures: [
-                "第1課: ビジネス日本語の基本",
-                "第2課: 読解と作文の練習",
-                "第3課: 試験対策",
-            ],
-            test: "テスト３:リスニング",
-        },
     ];
 
     const handleRedirect = () => {
@@ -160,7 +164,6 @@ const CourseStudy = ({ user }) => {
                                 </div>
                             </div>
                         </div>
-                        {/* bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 */}
                         <button
                             onClick={handleRedirect}
                             className="w-[200px] bg-blue-500 from-green-400 to-green-600 text-white py-2 px-4 rounded shadow hover:bg-blue-600 transition-all duration-300"
@@ -199,9 +202,9 @@ const CourseStudy = ({ user }) => {
                             <div className="p-4">
                                 {activeTab === "Tab1" && (
                                     <div>
-                                        {chapters.map((chapter) => (
+                                        {chapters.map((chapter, index) => (
                                             <div
-                                                key={chapter.id}
+                                                key={chapter._id}
                                                 className="mb-4"
                                             >
                                                 {/* Chapter Header */}
@@ -209,174 +212,91 @@ const CourseStudy = ({ user }) => {
                                                     className="w-full text-left py-2 px-4 bg-gray-300 rounded flex justify-between items-center"
                                                     onClick={() =>
                                                         toggleChapter(
-                                                            chapter.id
+                                                            chapter._id
                                                         )
                                                     }
                                                 >
                                                     <span className="font-bold">
-                                                        {chapter.title}
+                                                        {`セクション${chapter?.order}:${chapter?.title}`}
                                                     </span>
                                                     <span>
                                                         {openChapters[
-                                                            chapter.id
+                                                            chapter._id
                                                         ]
                                                             ? "▲"
                                                             : "▼"}
                                                     </span>
                                                 </button>
 
-                                                {chapter.id === 1
-                                                    ? openChapters[
-                                                          chapter.id
-                                                      ] && (
-                                                          <div className="mt-2 pl-4">
-                                                              {/* Mô tả chương */}
-                                                              <div className="mb-4 text-gray-700 font-medium">
-                                                                  <p>
-                                                                      {
-                                                                          chapter?.description
-                                                                      }
-                                                                  </p>
-                                                              </div>
+                                                {openChapters[chapter._id] && (
+                                                    <div className="mt-2 pl-4">
+                                                        {/* Mô tả chương */}
+                                                        <div className="mb-4 text-gray-700 font-medium">
+                                                            <p>
+                                                                {
+                                                                    chapter?.description
+                                                                }
+                                                            </p>
+                                                        </div>
 
-                                                              {/* Danh sách bài học */}
-                                                              {lectures.length >
-                                                                  0 &&
-                                                                  lectures.map(
-                                                                      (
-                                                                          lecture
-                                                                      ) => (
-                                                                          <>
-                                                                              <div className="flex">
-                                                                                  <Link
-                                                                                      to={`/lectures/${course._id}`}
-                                                                                      className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                                  >
-                                                                                      <span className="text-left">
-                                                                                          {`第${lecture?.order}課:${lecture?.title}`}
-                                                                                      </span>
-                                                                                      <FontAwesomeIcon
-                                                                                          icon={
-                                                                                              faCheck
-                                                                                          }
-                                                                                          className="text-green-500 text-[20px]"
-                                                                                      />
-                                                                                  </Link>
-                                                                              </div>
-                                                                          </>
-                                                                      )
-                                                                  )}
+                                                        {/* Danh sách bài học */}
+                                                        {chapter?.lectures
+                                                            .length > 0 &&
+                                                            chapter?.lectures.map(
+                                                                (
+                                                                    lecture,
+                                                                    index
+                                                                ) => (
+                                                                    <div
+                                                                        className="flex"
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                    >
+                                                                        <Link
+                                                                            to={`/lectures/${course._id}`}
+                                                                            className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
+                                                                        >
+                                                                            <span className="text-left">
+                                                                                {`第${
+                                                                                    index +
+                                                                                    1
+                                                                                }課:${lecture}`}
+                                                                            </span>
+                                                                            <FontAwesomeIcon
+                                                                                icon={
+                                                                                    faCheck
+                                                                                }
+                                                                                className="text-green-500 text-[20px]"
+                                                                            />
+                                                                        </Link>
+                                                                    </div>
+                                                                )
+                                                            )}
 
-                                                              <div className="flex">
-                                                                  <Link
-                                                                      to={`/course/${course._id}/tests`}
-                                                                      className="m-2 w-full bg-red-200 text-black rounded hover:bg-red-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                  >
-                                                                      <span className="text-left">
-                                                                          {`テスト${lectures[0]?.order}:${lectures[0]?.testTitle}`}
-                                                                      </span>
-                                                                      <FontAwesomeIcon
-                                                                          icon={
-                                                                              faCheck
-                                                                          }
-                                                                          className="text-green-500 text-[20px]"
-                                                                      />
-                                                                  </Link>
-                                                              </div>
-                                                          </div>
-                                                      )
-                                                    : openChapters[
-                                                          chapter.id
-                                                      ] && (
-                                                          <div className="mt-2 pl-4">
-                                                              {/* Mô tả chương */}
-                                                              <div className="mb-4 text-gray-700 font-medium">
-                                                                  <p>
-                                                                      {
-                                                                          chapter?.description
-                                                                      }
-                                                                  </p>
-                                                              </div>
-
-                                                              {/* Danh sách bài học */}
-                                                              <div className="flex">
-                                                                  <Link
-                                                                      to={`/lectures/${course._id}`}
-                                                                      className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                  >
-                                                                      <span className="text-left">
-                                                                          {
-                                                                              chapter
-                                                                                  ?.lectures[0]
-                                                                          }
-                                                                      </span>
-                                                                      <FontAwesomeIcon
-                                                                          icon={
-                                                                              faLock
-                                                                          }
-                                                                          className="text-green-500 text-[20px]"
-                                                                      />
-                                                                  </Link>
-                                                              </div>
-                                                              <div className="flex">
-                                                                  <Link
-                                                                      to={`/lectures/${course._id}`}
-                                                                      className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                  >
-                                                                      <span className="text-left">
-                                                                          {
-                                                                              chapter
-                                                                                  ?.lectures[1]
-                                                                          }
-                                                                      </span>
-                                                                      <FontAwesomeIcon
-                                                                          icon={
-                                                                              faLock
-                                                                          }
-                                                                          className="text-green-500 text-[20px]"
-                                                                      />
-                                                                  </Link>
-                                                              </div>
-                                                              <div className="flex">
-                                                                  <Link
-                                                                      to={`/lectures/${course._id}`}
-                                                                      className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                  >
-                                                                      <span className="text-left">
-                                                                          {
-                                                                              chapter
-                                                                                  ?.lectures[2]
-                                                                          }
-                                                                      </span>
-                                                                      <FontAwesomeIcon
-                                                                          icon={
-                                                                              faLock
-                                                                          }
-                                                                          className="text-green-500 text-[20px]"
-                                                                      />
-                                                                  </Link>
-                                                              </div>
-                                                              {/* test */}
-                                                              <div className="flex">
-                                                                  <Link
-                                                                      to={`/course/${course._id}/tests`}
-                                                                      className="m-2 w-full bg-red-200 text-black rounded hover:bg-red-300 flex items-center justify-between gap-2 py-2 p-2"
-                                                                  >
-                                                                      <span className="text-left">
-                                                                          {
-                                                                              chapter?.test
-                                                                          }
-                                                                      </span>
-                                                                      <FontAwesomeIcon
-                                                                          icon={
-                                                                              faLock
-                                                                          }
-                                                                          className="text-green-500 text-[20px]"
-                                                                      />
-                                                                  </Link>
-                                                              </div>
-                                                          </div>
-                                                      )}
+                                                        <div className="flex">
+                                                            <Link
+                                                                to={`/course/${course._id}/tests`}
+                                                                className="m-2 w-full bg-red-200 text-black rounded hover:bg-red-300 flex items-center justify-between gap-2 py-2 p-2"
+                                                            >
+                                                                <span className="text-left">
+                                                                    {`テスト${
+                                                                        index +
+                                                                        1
+                                                                    }:${
+                                                                        chapter?.test
+                                                                    }`}
+                                                                </span>
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faCheck
+                                                                    }
+                                                                    className="text-green-500 text-[20px]"
+                                                                />
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         ))}
                                     </div>
@@ -385,7 +305,10 @@ const CourseStudy = ({ user }) => {
                                     <div>
                                         {/* Đây là nội dung của Tab 2. */}
                                         {exercises.map((exercise) => (
-                                            <div className="flex">
+                                            <div
+                                                className="flex"
+                                                key={exercise.id}
+                                            >
                                                 <Link
                                                     to={`/course/${course._id}/practices`}
                                                     className="m-2 w-full bg-gray-200 text-black rounded hover:bg-gray-300 flex items-center justify-between gap-2 py-2 p-2"
@@ -434,7 +357,6 @@ const CourseStudy = ({ user }) => {
                                 続ける
                             </button>
                         </div>
-                        {/* </div> */}
                     </div>
                 </div>
             )}

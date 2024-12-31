@@ -1,4 +1,5 @@
 // import { instance } from "../index.js";
+import mongoose from "mongoose";
 import TryCatch from "../middlewares/TryCatch.js";
 import { Courses } from "../models/Courses.js";
 import { Lecture } from "../models/Lecture.js";
@@ -6,6 +7,7 @@ import { User } from "../models/User.js";
 import crypto from "crypto";
 import { Payment } from "../models/Payment.js";
 import { Progress } from "../models/Progress.js";
+import { Chapter } from "../models/Chapter.js";
 
 export const getAllCourses = TryCatch(async (req, res) => {
     const courses = await Courses.find();
@@ -20,6 +22,57 @@ export const getSingleCourse = TryCatch(async (req, res) => {
     res.json({
         course,
     });
+});
+
+export const getChapterByCourseId = TryCatch(async (req, res) => {
+    try {
+        const id = req.params.id;
+        // Validate courseId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new Error("Invalid courseId");
+        }
+
+        console.log("Fetching chapters for courseId:", id);
+
+        // Query chapters by courseId
+        const chapters = await Chapter.aggregate([
+            { $match: { course: new mongoose.Types.ObjectId(id) } }, // Filter by courseId
+            { $sort: { order: 1 } }, // Sort chapters by order
+            {
+                $lookup: {
+                    from: "lectures", // Lecture collection
+                    localField: "_id", // Chapter _id
+                    foreignField: "chapter", // Lecture chapter reference
+                    as: "lectures", // Merge results into "lectures"
+                },
+            },
+            {
+                $project: {
+                    id: "$_id",
+                    title: "$title",
+                    description: "$description", // Assuming description is in testTitle
+                    test: "$testTitle", // Assuming testTitle contains test information
+                    order: "$order",
+                    lectures: {
+                        $map: {
+                            input: "$lectures",
+                            as: "lecture",
+                            in: "$$lecture.title", // Extract lecture titles
+                        },
+                    },
+                },
+            },
+        ]);
+
+        return res.json({
+            message: "Chapters fetched successfully",
+            status: 200,
+            chapters,
+        });
+    } catch (error) {
+        console.error("Error fetching chapters:", error);
+        throw new Error("Failed to fetch chapters");
+    }
 });
 
 export const fetchLectures = TryCatch(async (req, res) => {
