@@ -189,16 +189,8 @@ const Dopractice = ({ practice, isStarted }) => {
                     </h3>
                     <span className="text-black">
                         <span className="font-bold"> 問題:</span>
-                        あなたは、日本にある、企業に人を紹介する会社で働いています。社長があなた
-                        くにしてん かんが かいぎ しゃちょう しつもん
-                        の国に支店をつくろうと考えています。会議で社長があなたに質問します。それを
-                        こた 聞いて答えてください。 くにかいしゃ
+                        最近のプロジェクトの進捗について、報連相を行っていますか？もし問題があれば、どのように報告し、連絡し、相談していますか？
                     </span>
-                    <p>
-                        ・あなたの国で会社をつくることについて あたら してん
-                        はたら
-                    </p>
-                    <p>・あなたが新しい支店で働くことについて</p>
                     <div className="mb-4 mt-4 m-auto">
                         {practice.questions[currentQuestion].type ===
                             "video" && (
