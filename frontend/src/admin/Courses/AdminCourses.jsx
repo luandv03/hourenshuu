@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axiosInstance from "axios";
+import axiosInstance from "@/api/axiosInstance";
 import Layout from "../Utils/Layout";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -17,7 +18,7 @@ const AdminCourses = ({ user }) => {
     };
 
     const handleGetCourse = async () => {
-        const res = await axios.get("http://localhost:5000/api/course/all");
+        const res = await axiosInstance.get("/api/course/all");
 
         console.log(res.data.courses);
 

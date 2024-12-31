@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import axiosInstance from "@/api/axiosInstance";
 
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -63,15 +64,11 @@ const Dopractice = ({ practice, isStarted }) => {
         setMessage("");
 
         try {
-            const response = await axios.post(
-                "http://localhost:5000/api/upload",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+            const response = await axiosInstance.post("/api/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             setAnswerRecording(response.data.url);
             setMessage("アップロード成功！");
 
@@ -143,8 +140,8 @@ const Dopractice = ({ practice, isStarted }) => {
 
         try {
             // handle call API save answer
-            const res = await axios.post(
-                "http://localhost:5000/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02/save",
+            const res = await axiosInstance.post(
+                "/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02/save",
                 payload
             );
 

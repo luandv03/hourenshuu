@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import "./lecture.css";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import axios from "axios";
 import Loading from "../../components/loading/Loading";
 import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
@@ -104,8 +103,8 @@ const Practices = () => {
     }, []);
 
     const handleGetPracticeUser = async () => {
-        const res = await axios.get(
-            "http://localhost:5000/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02"
+        const res = await axiosInstance.get(
+            "/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02"
         );
 
         if (res.data.status === 200) {

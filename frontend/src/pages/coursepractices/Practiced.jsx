@@ -87,8 +87,8 @@ const Practiced = () => {
     const [practiceUser, setPracticeUser] = useState({});
 
     const handleGetPracticeUser = async () => {
-        const res = await axios.get(
-            "http://localhost:5000/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02"
+        const res = await axiosInstance.get(
+            "/api/practice/64a7e4c60123d9539987bc10/user/64a7e4c60123d9539987bc02"
         );
 
         if (res.data.status === 200) {

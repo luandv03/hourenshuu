@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import axiosInstance from "@/api/axiosInstance";
 
 function PracticeRegarding() {
     const [regard, setRegard] = useState({
@@ -10,7 +11,7 @@ function PracticeRegarding() {
     const [practiceUsers, setPracticeUsers] = useState([]);
 
     const handleGetPracticeUsers = async () => {
-        const res = await axios.get("http://localhost:5000/api/practice/user");
+        const res = await axiosInstance.get("/api/practice/user");
 
         setPracticeUsers(res.data.data);
 
@@ -21,8 +22,8 @@ function PracticeRegarding() {
         if (regard.feedback === "" || regard.score === 0)
             return toast("フィードバックと点数を入力してください。");
 
-        const res = await axios.put(
-            `http://localhost:5000/api/practice/${practiceUserId}/regarding`,
+        const res = await axiosInstance.put(
+            `/api/practice/${practiceUserId}/regarding`,
             {
                 result: regard.feedback,
                 point: regard.score,
