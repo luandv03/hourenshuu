@@ -199,7 +199,7 @@ const Dopractice = ({ practice, isStarted }) => {
                                     <iframe
                                         width="700"
                                         height="400"
-                                        src="https://www.youtube.com/embed/nCCwUiVDUwc"
+                                        src="https://www.youtube.com/embed/27wgxQyxKLQ?si=KKpRXSFrma2ST1kk"
                                         title="Video question"
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
