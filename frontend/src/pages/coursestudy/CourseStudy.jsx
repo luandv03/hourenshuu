@@ -336,23 +336,20 @@ const CourseStudy = ({ user }) => {
                         <div className="h-[400px] w-[600px] p-4 bg-white shadow-lg rounded-lg flex flex-col gap-4">
                             <div className="w-full bg-yellow-200 rounded-lg overflow-hidden flex justify-center items-center">
                                 <img
-                                    src={
-                                        categoryImages[course.category] ||
-                                        categoryImages["Default"]
-                                    }
+                                    src={course?.image}
                                     alt="Thumbnail"
                                     className="object-cover w-full h-full"
                                 />
                             </div>
                             <div className="text-gray-800">
                                 <p className="font-medium text-500">
-                                    レッスン数: 10
+                                    レッスン数: 5
                                 </p>
                                 <p className="font-medium text-500">
                                     演習問題数: 4
                                 </p>
                                 <p className="font-medium text-500">
-                                    テスト数: 9
+                                    テスト数: 3
                                 </p>
                                 <p className="font-medium text-500">
                                     受講者数: 11
