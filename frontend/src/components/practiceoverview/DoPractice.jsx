@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import axios from "axios";
@@ -71,7 +73,7 @@ const Dopractice = ({ practice, isStarted }) => {
                 }
             );
             setAnswerRecording(response.data.url);
-            setMessage("アップロード成功！ ファイルURL: " + response.data.url);
+            setMessage("アップロード成功！");
 
             handleSubmitPractice(response.data.url);
         } catch (error) {
@@ -229,9 +231,13 @@ const Dopractice = ({ practice, isStarted }) => {
                     </div>
 
                     {/* Hiển thị thông báo */}
-                    {message && (
-                        <p className="mt-4 mb-4 text-md font-bold text-blue-700">
-                            {message}
+                    {recording && (
+                        <p className="mt-4 mb-4 text-md font-bold text-blue-700 flex items-center">
+                            <FontAwesomeIcon
+                                icon={faMicrophone}
+                                className="animate-pulse mr-2"
+                            />
+                            ...
                         </p>
                     )}
 
