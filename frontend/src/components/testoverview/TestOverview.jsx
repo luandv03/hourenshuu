@@ -67,7 +67,7 @@ const TestOverview = ({ test }) => {
                     </div>
 
                     {/* Right Section */}
-                    <div className="w-1/4">
+                    <div>
                         <img
                             src={test.testImage}
                             alt={test.title}
